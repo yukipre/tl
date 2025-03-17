@@ -82,3 +82,20 @@ input, select {
         width: 90%;
     }
 }
+
+/* 検索ボタン */
+#searchBtn {
+    background-color: #007BFF; /* 青色 */
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#searchBtn:hover {
+    background-color: #0056b3; /* ホバー時の色 */
+}
