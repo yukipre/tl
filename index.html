@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON検索ツール</title>
+    <title>参考TL検索ツール</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>バトル検索ツール</h1>
+        <h1>参考TL検索ツール</h1>
 
         <div class="search-section">
             <label>戦場:</label>
             <select id="battleField">
-                <option value="屋外" selected>屋外</option>
-                <option value="市街地">市街地</option>
+                <option value="屋外">屋外</option>
+                <option value="市街地" selected>市街地</option>
                 <option value="屋内">屋内</option>
             </select>
 
             <label>ボス名:</label>
             <select id="bossName">
-                <option value="ビナー" selected>ビナー</option>
+                <option value="ビナー">ビナー</option>
                 <option value="ケセド">ケセド</option>
                 <option value="シロ＆クロ">シロ＆クロ</option>
                 <option value="ヒエロニムス">ヒエロニムス</option>
@@ -30,22 +30,22 @@
                 <option value="ゴズ">ゴズ</option>
                 <option value="グレゴリオ">グレゴリオ</option>
                 <option value="ホバークラフト">ホバークラフト</option>
-                <option value="クロカゲ">クロカゲ</option>
+                <option value="クロカゲ" selected>クロカゲ</option>
                 <option value="ゲブラ">ゲブラ</option>
             </select>
 
             <label>装甲タイプ:</label>
             <select id="armor">
-                <option value="軽装備" selected>軽装備</option>
+                <option value="軽装備">軽装備</option>
                 <option value="重装甲">重装甲</option>
                 <option value="特殊装甲">特殊装甲</option>
-                <option value="弾力装甲">弾力装甲</option>
+                <option value="弾力装甲" selected>弾力装甲</option>
             </select>
 
-            <label>含めるキャラ（カンマ区切り）:</label>
+            <label>含める生徒（カンマ区切り）:</label>
             <input type="text" id="includeStudents" placeholder="例: ハナコ（水着）, キキョウ">
 
-            <label>除外するキャラ（カンマ区切り）:</label>
+            <label>除外する生徒（カンマ区切り）:</label>
             <input type="text" id="excludeStudents" placeholder="例: シュン, アコ">
 
             <button id="searchBtn">検索</button>
