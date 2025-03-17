@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON検索ツール</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>バトル検索ツール</h1>
+        
+        <div class="search-section">
+            <label>戦場:</label>
+            <input type="text" id="battleField" placeholder="例: 市街地">
+            
+            <label>ボス名:</label>
+            <input type="text" id="bossName" placeholder="例: クロカゲ">
+            
+            <label>装甲タイプ:</label>
+            <input type="text" id="armor" placeholder="例: 弾力装甲">
+            
+            <label>含めるキャラ（カンマ区切り）:</label>
+            <input type="text" id="includeStudents" placeholder="例: ハナコ（水着）, キキョウ">
+            
+            <label>除外するキャラ（カンマ区切り）:</label>
+            <input type="text" id="excludeStudents" placeholder="例: シュン, アコ">
+
+            <button id="searchBtn">検索</button>
+        </div>
+
+        <div id="result">
+            <h2>検索結果</h2>
+            <ul id="resultList"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
