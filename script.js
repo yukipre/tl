@@ -39,9 +39,6 @@ function displayResults(results) {
         const li = document.createElement('li');
         li.classList.add('result-item');
         li.innerHTML = `
-            <strong>戦場:</strong> ${record["battle-field"]} <br>
-            <strong>ボス:</strong> ${record["boss-name"]} <br>
-            <strong>装甲:</strong> ${record["armor"]} <br>
             <strong>スコア:</strong> ${record.score.toLocaleString()} <br>
             <strong>キャラ:</strong> ${record.students.join(', ')} <br>
             <a href="${record.URL}" target="_blank">動画リンク</a>
