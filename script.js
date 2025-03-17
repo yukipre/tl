@@ -40,7 +40,7 @@ function displayResults(results) {
         li.classList.add('result-item');
         li.innerHTML = `
             <strong>スコア:</strong> ${record.score.toLocaleString()} <br>
-            <strong>キャラ:</strong> ${record.students.join(', ')} <br>
+            <strong>生徒:</strong> ${record.students.join(', ')} <br>
             <a href="${record.URL}" target="_blank">動画リンク</a>
         `;
         resultList.appendChild(li);
