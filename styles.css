@@ -1,3 +1,4 @@
+/* 基本スタイル */
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
@@ -18,11 +19,15 @@ h1, h2 {
     text-align: center;
 }
 
-/* 入力フォーム */
+/* 検索フォーム */
 .search-section {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+label {
+    font-weight: bold;
 }
 
 input, select {
@@ -33,69 +38,62 @@ input, select {
     font-size: 16px;
 }
 
-/* 選択リスト */
-.selected-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-}
-
-.selected-item {
-    background: #007BFF;
+/* 検索ボタン */
+button {
+    padding: 12px;
+    background-color: #007BFF;
     color: white;
-    padding: 5px 10px;
-    border-radius: 12px;
-    font-size: 14px;
-}
-
-.selected-item button {
-    background: none;
     border: none;
-    color: white;
-    margin-left: 5px;
+    border-radius: 4px;
     cursor: pointer;
+    font-size: 18px;
 }
 
-/* オートコンプリート */
-.suggestions {
-    border: 1px solid #ccc;
-    max-height: 150px;
-    overflow-y: auto;
-    background: white;
-    display: none;
-    position: absolute;
-    z-index: 10;
+button:hover {
+    background-color: #0056b3;
 }
 
-.suggestions div {
+/* 検索結果 */
+#result {
+    margin-top: 20px;
+}
+
+#resultList {
+    list-style: none;
+    padding: 0;
+}
+
+.result-item {
+    background: #e9ecef;
     padding: 10px;
-    cursor: pointer;
+    border-radius: 4px;
+    margin: 5px 0;
+    font-size: 16px;
+    word-break: break-word;
 }
 
-.suggestions div:hover {
-    background: #ddd;
-}
-
-/* スマホ対応 */
+/* 🔹 スマホ＆タブレット向けのレスポンシブ対応 */
 @media screen and (max-width: 768px) {
     .container {
         width: 90%;
+        padding: 15px;
     }
-}
 
-/* 検索ボタン */
-#searchBtn {
-    background-color: #007BFF; /* 青色 */
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    text-align: center;
-    margin-top: 10px;
-}
+    h1 {
+        font-size: 22px;
+    }
 
-#searchBtn:hover {
-    background-color: #0056b3; /* ホバー時の色 */
+    input, select, button {
+        font-size: 16px;
+    }
+
+    button {
+        padding: 14px;
+        font-size: 18px;
+    }
+
+    .result-item {
+        font-size: 14px;
+        padding: 8px;
+    }
 }

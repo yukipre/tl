@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>データ検索ツール</title>
+    <title>JSON検索ツール</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <div class="container">
-        <h1>データ検索ツール</h1>
+        <h1>バトル検索ツール</h1>
 
         <div class="search-section">
-            <label for="battleField">戦場:</label>
+            <label>戦場:</label>
             <select id="battleField">
                 <option value="屋外" selected>屋外</option>
                 <option value="市街地">市街地</option>
                 <option value="屋内">屋内</option>
             </select>
 
-            <label for="bossName">ボス:</label>
+            <label>ボス名:</label>
             <select id="bossName">
                 <option value="ビナー" selected>ビナー</option>
                 <option value="ケセド">ケセド</option>
@@ -35,7 +34,7 @@
                 <option value="ゲブラ">ゲブラ</option>
             </select>
 
-            <label for="armor">装甲:</label>
+            <label>装甲タイプ:</label>
             <select id="armor">
                 <option value="軽装備" selected>軽装備</option>
                 <option value="重装甲">重装甲</option>
@@ -43,27 +42,19 @@
                 <option value="弾力装甲">弾力装甲</option>
             </select>
 
-            <!-- 含めるキャラ -->
-            <label>含めるキャラ:</label>
-            <div class="autocomplete">
-                <input type="text" id="includeInput" placeholder="キャラ名を入力">
-                <div id="includeSuggestions" class="suggestions"></div>
-            </div>
-            <div id="includeList" class="selected-list"></div>
+            <label>含めるキャラ（カンマ区切り）:</label>
+            <input type="text" id="includeStudents" placeholder="例: ハナコ（水着）, キキョウ">
 
-            <!-- 除外するキャラ -->
-            <label>除外するキャラ:</label>
-            <div class="autocomplete">
-                <input type="text" id="excludeInput" placeholder="キャラ名を入力">
-                <div id="excludeSuggestions" class="suggestions"></div>
-            </div>
-            <div id="excludeList" class="selected-list"></div>
+            <label>除外するキャラ（カンマ区切り）:</label>
+            <input type="text" id="excludeStudents" placeholder="例: シュン, アコ">
 
             <button id="searchBtn">検索</button>
         </div>
 
-        <h2>検索結果</h2>
-        <ul id="resultList"></ul>
+        <div id="result">
+            <h2>検索結果</h2>
+            <ul id="resultList"></ul>
+        </div>
     </div>
 
     <script src="script.js"></script>

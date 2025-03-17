@@ -1,44 +1,48 @@
-const characters = ["ハナコ（水着）", "キキョウ", "ドレスアル", "マリー（アイドル）", "キサキ", "リオ", "シュン", "ハレ（キャンプ）", "カスミ", "アコ", "水着シロコ", "セナ（私服）"];
+document.getElementById('searchBtn').addEventListener('click', () => {
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => filterResults(data.record))
+        .catch(error => console.error('データの読み込みエラー:', error));
+});
 
-document.getElementById('searchBtn').addEventListener('click', searchData);
+function filterResults(records) {
+    const battleField = document.getElementById('battleField').value;
+    const bossName = document.getElementById('bossName').value;
+    const armor = document.getElementById('armor').value;
+    const includeStudents = document.getElementById('includeStudents').value.trim().split(',').map(s => s.trim()).filter(s => s);
+    const excludeStudents = document.getElementById('excludeStudents').value.trim().split(',').map(s => s.trim()).filter(s => s);
 
-function setupAutocomplete(inputId, listId, suggestionsId) {
-    const input = document.getElementById(inputId);
-    const list = document.getElementById(listId);
-    const suggestions = document.getElementById(suggestionsId);
-
-    input.addEventListener('input', function() {
-        const value = this.value.toLowerCase();
-        suggestions.innerHTML = '';
-        if (!value) return;
-        const matches = characters.filter(char => char.toLowerCase().includes(value));
-        matches.forEach(char => {
-            const div = document.createElement('div');
-            div.textContent = char;
-            div.addEventListener('click', function() {
-                addSelectedItem(list, char);
-                input.value = '';
-                suggestions.innerHTML = '';
-            });
-            suggestions.appendChild(div);
-        });
-        suggestions.style.display = matches.length ? 'block' : 'none';
+    let filtered = records.filter(record => {
+        return (!battleField || record["battle-field"] === battleField) &&
+               (!bossName || record["boss-name"] === bossName) &&
+               (!armor || record["armor"] === armor) &&
+               (includeStudents.length === 0 || includeStudents.every(st => record.students.includes(st))) &&
+               (excludeStudents.length === 0 || excludeStudents.every(st => !record.students.includes(st)));
     });
 
-    document.addEventListener('click', () => suggestions.style.display = 'none');
+    // 🔹 スコアが高い順にソート
+    filtered.sort((a, b) => b.score - a.score);
+
+    displayResults(filtered);
 }
 
-function addSelectedItem(list, name) {
-    if ([...list.children].some(el => el.textContent.includes(name))) return;
-    const item = document.createElement('div');
-    item.classList.add('selected-item');
-    item.innerHTML = `${name} <button onclick="this.parentElement.remove()">×</button>`;
-    list.appendChild(item);
-}
+function displayResults(results) {
+    const resultList = document.getElementById('resultList');
+    resultList.innerHTML = '';
 
-setupAutocomplete('includeInput', 'includeList', 'includeSuggestions');
-setupAutocomplete('excludeInput', 'excludeList', 'excludeSuggestions');
+    if (results.length === 0) {
+        resultList.innerHTML = '<li class="result-item">該当するデータがありません。</li>';
+        return;
+    }
 
-function searchData() {
-    console.log("検索処理を実装してください！");
+    results.forEach(record => {
+        const li = document.createElement('li');
+        li.classList.add('result-item');
+        li.innerHTML = `
+            <strong>スコア:</strong> ${record.score.toLocaleString()} <br>
+            <strong>キャラ:</strong> ${record.students.join(', ')} <br>
+            <a href="${record.URL}" target="_blank">動画リンク</a>
+        `;
+        resultList.appendChild(li);
+    });
 }
