@@ -6,19 +6,22 @@ document.getElementById('searchBtn').addEventListener('click', () => {
 });
 
 function filterResults(records) {
-    const battleField = document.getElementById('battleField').value.trim();
-    const bossName = document.getElementById('bossName').value.trim();
-    const armor = document.getElementById('armor').value.trim();
-    const includeStudents = document.getElementById('includeStudents').value.trim().split(',').map(s => s.trim());
-    const excludeStudents = document.getElementById('excludeStudents').value.trim().split(',').map(s => s.trim());
+    const battleField = document.getElementById('battleField').value;
+    const bossName = document.getElementById('bossName').value;
+    const armor = document.getElementById('armor').value;
+    const includeStudents = document.getElementById('includeStudents').value.trim().split(',').map(s => s.trim()).filter(s => s);
+    const excludeStudents = document.getElementById('excludeStudents').value.trim().split(',').map(s => s.trim()).filter(s => s);
 
     let filtered = records.filter(record => {
         return (!battleField || record["battle-field"] === battleField) &&
                (!bossName || record["boss-name"] === bossName) &&
                (!armor || record["armor"] === armor) &&
-               (includeStudents.every(st => record.students.includes(st))) &&
-               (excludeStudents.every(st => !record.students.includes(st)));
+               (includeStudents.length === 0 || includeStudents.every(st => record.students.includes(st))) &&
+               (excludeStudents.length === 0 || excludeStudents.every(st => !record.students.includes(st)));
     });
+
+    // 🔹 スコアが高い順にソート
+    filtered.sort((a, b) => b.score - a.score);
 
     displayResults(filtered);
 }
@@ -39,9 +42,9 @@ function displayResults(results) {
             <strong>戦場:</strong> ${record["battle-field"]} <br>
             <strong>ボス:</strong> ${record["boss-name"]} <br>
             <strong>装甲:</strong> ${record["armor"]} <br>
-            <strong>スコア:</strong> ${record["score"]} <br>
+            <strong>スコア:</strong> ${record.score.toLocaleString()} <br>
             <strong>キャラ:</strong> ${record.students.join(', ')} <br>
-            <a href="${record.URL}" target="_blank">YouTubeリンク</a>
+            <a href="${record.URL}" target="_blank">動画リンク</a>
         `;
         resultList.appendChild(li);
     });
