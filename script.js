@@ -323,13 +323,25 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                     studentsHtml += '</div>';
 
+                    const memoKey = `memo_${record.id}`;
+                    const savedMemo = localStorage.getItem(memoKey) || "";
+
                     li.innerHTML = `
                         <strong>スコア：${record.score.toLocaleString()}</strong>
                         ${studentsHtml}
                         <a href="${record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
+                        <textarea class="memo-input" data-id="${record.id}" placeholder="メモを入力">${savedMemo}</textarea>
                     `;
                     resultList.appendChild(li);
                 });
+
+                document.querySelectorAll('.memo-input').forEach(textarea => {
+                    textarea.addEventListener('input', event => {
+                        const id = event.target.getAttribute('data-id');
+                        localStorage.setItem(`memo_${id}`, event.target.value);
+                    });
+                });
+                
             })
             .catch(error => console.error('顔写真データの読み込みエラー:', error));
         
