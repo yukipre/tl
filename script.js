@@ -329,9 +329,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     let additionalInfo = '';
                     if (showFavoritesOnly) {
                         additionalInfo = `
-                            <p>戦場: ${record["battle-field"]}</p>
-                            <p>ボス名: ${record["boss-name"]}</p>
-                            <p>装甲タイプ: ${record["armor"]}</p>
+                            <p class="additional">戦地: ${record["battle-field"]}</p>
+                            <p class="additional">ボス名: ${record["boss-name"]}</p>
+                            <p class="additional">装甲タイプ: ${record["armor"]}</p>
                         `;
                     }
     
