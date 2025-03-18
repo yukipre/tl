@@ -252,52 +252,60 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function filterResults(records, scrollPosition, showFavoritesOnly) {
-        const battleField = document.getElementById('battleField').value;
-        const bossName = document.getElementById('bossName').value;
-        const armor = document.getElementById('armor').value;
-        const difficulty = document.getElementById('difficulty').value;
-        const includeStudents = includeStudentsTagify.value.map(tag => tag.value);
-        const excludeStudents = excludeStudentsTagify.value.map(tag => tag.value);
+        let filtered = records; // 初期状態ではすべてのレコードを含む
 
-        let filtered = records.filter(record => {
-            let score = record["score"]; // recordからscoreを取得
-            let difficultyFilter = true; // difficultyによるフィルタリングの初期値をtrueに設定
+        if (showFavoritesOnly) {
+            // お気に入り表示の場合、お気に入り登録されているデータのみを抽出
+            filtered = records.filter(record => {
+                const isFavorite = JSON.parse(localStorage.getItem(`favorite_${record.id}`)) || false;
+                return isFavorite;
+            });
+        } else {
+            // 通常検索の場合、既存の検索条件によるフィルタリングを適用
+            const battleField = document.getElementById('battleField').value;
+            const bossName = document.getElementById('bossName').value;
+            const armor = document.getElementById('armor').value;
+            const difficulty = document.getElementById('difficulty').value;
+            const includeStudents = includeStudentsTagify.value.map(tag => tag.value);
+            const excludeStudents = excludeStudentsTagify.value.map(tag => tag.value);
 
-            if (difficulty) { // difficultyが指定されている場合のみフィルタリング
-                switch (difficulty) {
-                    case "LUNATIC":
-                        difficultyFilter = score >= 44025003;
-                        break;
-                    case "TORMENT":
-                        difficultyFilter = score >= 31708002 && score <= 44025002;
-                        break;
-                    case "INSANE":
-                        difficultyFilter = score >= 21016002 && score <= 31708001;
-                        break;
-                    case "EXTREME":
-                        difficultyFilter = score >= 10160001 && score <= 21016000;
-                        break;
-                    case "HARDCORE":
-                        difficultyFilter = score <= 10160000;
-                        break;
-                    default:
-                        difficultyFilter = true; // difficultyが上記以外の場合はフィルタリングしない
+            filtered = records.filter(record => {
+                // ... (既存の検索条件によるフィルタリング)
+                let score = record["score"]; // recordからscoreを取得
+                let difficultyFilter = true; // difficultyによるフィルタリングの初期値をtrueに設定
+
+                if (difficulty) { // difficultyが指定されている場合のみフィルタリング
+                    switch (difficulty) {
+                        case "LUNATIC":
+                            difficultyFilter = score >= 44025003;
+                            break;
+                        case "TORMENT":
+                            difficultyFilter = score >= 31708002 && score <= 44025002;
+                            break;
+                        case "INSANE":
+                            difficultyFilter = score >= 21016002 && score <= 31708001;
+                            break;
+                        case "EXTREME":
+                            difficultyFilter = score >= 10160001 && score <= 21016000;
+                            break;
+                        case "HARDCORE":
+                            difficultyFilter = score <= 10160000;
+                            break;
+                        default:
+                            difficultyFilter = true; // difficultyが上記以外の場合はフィルタリングしない
+                    }
                 }
-            }
-
-            const isFavorite = JSON.parse(localStorage.getItem(`favorite_${record.id}`)) || false;
-
-            return (!showFavoritesOnly || isFavorite) &&
-                   (!showFavoritesOnly && (!battleField || record["battle-field"] === battleField)) &&
-                   (!showFavoritesOnly && (!bossName || record["boss-name"] === bossName)) &&
-                   (!armor || record["armor"] === armor) &&
-                   (includeStudents.length === 0 || includeStudents.every(st => record.students.includes(st))) &&
-                   (excludeStudents.length === 0 || excludeStudents.every(st => !record.students.includes(st))) &&
-                   difficultyFilter; // difficultyによるフィルタリング結果を追加
-        });
+                return (!battleField || record["battle-field"] === battleField) &&
+                    (!bossName || record["boss-name"] === bossName) &&
+                    (!armor || record["armor"] === armor) &&
+                    (includeStudents.length === 0 || includeStudents.every(st => record.students.includes(st))) &&
+                    (excludeStudents.length === 0 || excludeStudents.every(st => !record.students.includes(st))) &&
+                    difficultyFilter; // difficultyによるフィルタリング結果を追加
+            });
+        }
 
         filtered.sort((a, b) => b.score - a.score);
-        displayResults(filtered, scrollPosition); // スクロール位置をdisplayResultsに渡す
+        displayResults(filtered, scrollPosition);
     }
 
     function displayResults(results, scrollPosition) {

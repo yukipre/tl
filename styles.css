@@ -231,3 +231,8 @@ button:hover {
 .favorite-btn.favorited {
     color: #ffc107;
 }
+
+/* 「お気に入りを表示」ボタンのスタイル */
+#favoriteBtn{
+    background-color: orange;
+}
