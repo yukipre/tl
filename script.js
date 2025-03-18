@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     li.innerHTML = `
                         <strong>スコア：${record.score.toLocaleString()}</strong>
                         ${studentsHtml}
-                        <a href="${record.URL}" class="video-link-btn" target="_blank">動画を見る</a>
+                        <a href="${record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
                     `;
                     resultList.appendChild(li);
                 });
