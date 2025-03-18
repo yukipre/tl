@@ -303,55 +303,56 @@ document.addEventListener('DOMContentLoaded', function () {
     function displayResults(results, scrollPosition) {
         const resultList = document.getElementById('resultList');
         resultList.innerHTML = '';
-
+    
         if (results.length === 0) {
             resultList.innerHTML = '<li class="no-data">該当するデータがありません。</li>';
+            window.scrollTo(0, scrollPosition); // 保存したスクロール位置に復元
             return;
         }
-
+    
         fetch('face.json')
             .then(response => response.json())
             .then(faceData => {
                 results.forEach(record => {
                     const li = document.createElement('li');
                     li.classList.add('result-item');
-
+    
                     let studentsHtml = '<div class="students-grid">';
                     record.students.forEach(studentName => {
                         const studentFace = faceData.record.find(face => face.name === studentName);
-                        const faceImage = studentFace ? `<img src="<span class="math-inline">\{studentFace\["face\-image"\]\}" alt\="</span>{studentName}">` : '';
+                        const faceImage = studentFace ? `<img src="${studentFace["face-image"]}" alt="${studentName}">` : '';
                         studentsHtml += `
                             <div class="student-item">
-                                <span class="math-inline">\{faceImage\}
-<span\></span>{studentName}</span>
+                                ${faceImage}
+                                <span>${studentName}</span>
                             </div>
                         `;
                     });
                     studentsHtml += '</div>';
-
+    
                     const memoKey = `memo_${record.id}`;
                     const savedMemo = localStorage.getItem(memoKey) || "";
                     const isFavorite = JSON.parse(localStorage.getItem(`favorite_${record.id}`)) || false;
-
+    
                     li.innerHTML = `
                         <strong>スコア：${record.score.toLocaleString()}</strong>
-                        <span class="math-inline">\{studentsHtml\}
-<textarea class\="memo\-input" data\-id\="</span>{record.id}" placeholder="自分だけの簡単なメモを残せます（自動保存）"><span class="math-inline">\{savedMemo\}</textarea\>
-<a href\="</span>{record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
-                        <button class="favorite-btn <span class="math-inline">\{isFavorite ? 'favorited' \: ''\}" data\-id\="</span>{record.id}">
+                        ${studentsHtml}
+                        <textarea class="memo-input" data-id="${record.id}" placeholder="自分だけの簡単なメモを残せます（自動保存）">${savedMemo}</textarea>
+                        <a href="${record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
+                        <button class="favorite-btn ${isFavorite ? 'favorited' : ''}" data-id="${record.id}">
                             <i class="fas fa-star"></i>
                         </button>
                     `;
                     resultList.appendChild(li);
                 });
-
+    
                 document.querySelectorAll('.memo-input').forEach(textarea => {
                     textarea.addEventListener('input', event => {
                         const id = event.target.getAttribute('data-id');
                         localStorage.setItem(`memo_${id}`, event.target.value);
                     });
                 });
-
+    
                 document.querySelectorAll('.favorite-btn').forEach(button => {
                     button.addEventListener('click', event => {
                         const id = event.target.getAttribute('data-id');
@@ -360,11 +361,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         event.target.classList.toggle('favorited');
                     });
                 });
-
+    
+                window.scrollTo(0, scrollPosition); // 保存したスクロール位置に復元
             })
             .catch(error => console.error('顔写真データの読み込みエラー:', error));
-
-        window.scrollTo(0, scrollPosition); // 保存したスクロール位置に復元
     }
 
     function saveSearchConditions() {
