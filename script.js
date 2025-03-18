@@ -244,11 +244,39 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function fetchDataAndFilter(showFavoritesOnly) {
         const scrollPosition = window.scrollY; // 現在のスクロール位置を保存
+        const spreadsheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT1hFKXsxRA06SbB84DTe6gKcOympw3dKnDL2NMLgl7dqwnjy4SDcOBLbrRFbfkoZ_T3LUxWQo_KDeh/pub?output=csv'; // スプレッドシートのCSV公開URLをここに設定
 
-        fetch('data.json')
-            .then(response => response.json())
-            .then(data => filterResults(data.record, scrollPosition, showFavoritesOnly))
+        fetch(spreadsheetUrl)
+            .then(response => response.text())
+            .then(csv => {
+                const records = csvToJson(csv);
+                filterResults(records, scrollPosition, showFavoritesOnly);
+            })
             .catch(error => console.error('データの読み込みエラー:', error));
+    }
+
+    function csvToJson(csv) {
+        const lines = csv.split('\n');
+        const headers = lines[0].split(',');
+        const records = [];
+
+        for (let i = 1; i < lines.length; i++) {
+            const currentLine = lines[i].split(',');
+            if (currentLine.length === headers.length) {
+                const record = {};
+                const students = [];
+                for (let j = 0; j < headers.length; j++) {
+                    if (headers[j].startsWith('student') && currentLine[j]) {
+                        students.push(currentLine[j].trim());
+                    } else if (!headers[j].startsWith('student')) {
+                        record[headers[j].trim()] = currentLine[j].trim();
+                    }
+                }
+                record.students = students;
+                records.push(record);
+            }
+        }
+        return records;
     }
 
     function filterResults(records, scrollPosition, showFavoritesOnly) {
@@ -271,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             filtered = records.filter(record => {
                 // ... (既存の検索条件によるフィルタリング)
-                let score = record["score"]; // recordからscoreを取得
+                let score = parseInt(record["score"]); // recordからscoreを取得
                 let difficultyFilter = true; // difficultyによるフィルタリングの初期値をtrueに設定
 
                 if (difficulty) { // difficultyが指定されている場合のみフィルタリング
