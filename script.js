@@ -329,8 +329,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     li.innerHTML = `
                         <strong>スコア：${record.score.toLocaleString()}</strong>
                         ${studentsHtml}
+                        <textarea class="memo-input" data-id="${record.id}" placeholder="簡単なメモを残せます（自動保存）">${savedMemo}</textarea>
                         <a href="${record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
-                        <textarea class="memo-input" data-id="${record.id}" placeholder="メモを入力">${savedMemo}</textarea>
                     `;
                     resultList.appendChild(li);
                 });
