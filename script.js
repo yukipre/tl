@@ -256,6 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let filtered = records.filter(record => {
             let score = record["score"]; // recordからscoreを取得
+            console.log(score);
             let difficultyFilter = true; // difficultyによるフィルタリングの初期値をtrueに設定
 
             if (difficulty) { // difficultyが指定されている場合のみフィルタリング
@@ -293,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function () {
         displayResults(filtered, scrollPosition); // スクロール位置をdisplayResultsに渡す
     }
 
-    function displayResults(results, scrollPosition) {
+    function displayResults(results) {
         const resultList = document.getElementById('resultList');
         resultList.innerHTML = '';
 
@@ -322,23 +323,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                     studentsHtml += '</div>';
 
-                    // メモエリアの追加
-                    let memoHtml = `
-                        <div class="memo-area" data-tl-id="${record.id}">
-                            <textarea placeholder="メモを入力してください"></textarea>
-                        </div>
-                    `;
-
                     li.innerHTML = `
                         <strong>スコア：${record.score.toLocaleString()}</strong>
                         ${studentsHtml}
-                        ${memoHtml}
                         <a href="${record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
                     `;
                     resultList.appendChild(li);
-
-                    // メモの初期化と表示
-                    initMemo(record.id);
                 });
             })
             .catch(error => console.error('顔写真データの読み込みエラー:', error));
@@ -373,21 +363,6 @@ document.addEventListener('DOMContentLoaded', function () {
         if (battleField || bossName || armor || difficulty || includeStudents.length > 0 || excludeStudents.length > 0) {
             fetchDataAndFilter(); // 条件が復元されたら自動的に検索を実行
         }
-    }
-
-    // メモの初期化と表示
-    function initMemo(tlId) {
-        const memoArea = document.querySelector(`.memo-area[data-tl-id="${tlId}"]`);
-        const textarea = memoArea.querySelector('textarea');
-        const userMemos = JSON.parse(localStorage.getItem('userMemos')) || {};
-        const userMemo = userMemos[tlId] || '';
-
-        textarea.value = userMemo;
-
-        textarea.addEventListener('input', () => {
-            userMemos[tlId] = textarea.value;
-            localStorage.setItem('userMemos', JSON.stringify(userMemos));
-        });
     }
     
 });
