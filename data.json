@@ -140,6 +140,22 @@
                 "サヤ",
                 "キサキ"
             ]
+        },
+        {
+            "id": 8,
+            "battle-field": "市街地",
+            "boss-name": "ビナー",
+            "armor": "重装甲",
+            "score": 39274719,
+            "URL": "https://www.youtube.com/watch?v=Wo0rMlI_zkM",
+            "students": [
+                "カンナ（水着）",
+                "ミカ",
+                "マキ",
+                "ウイ（水着）",
+                "フウカ（正月）",
+                "ヒマリ"
+            ]
         }
     ]
 }
