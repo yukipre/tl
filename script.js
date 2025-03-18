@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         filtered.sort((a, b) => b.score - a.score);
-        displayResults(filtered, scrollPosition);
+        displayResults(filtered, scrollPosition, showFavoritesOnly);
     }
 
     function displayResults(results, scrollPosition, showFavoritesOnly) {
