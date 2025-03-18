@@ -1,0 +1,853 @@
+{
+    "record": [
+        {
+            "name": "アイリ",
+            "face-image": "/tl/face/airi.png"
+        },
+        {
+            "name": "アイリ（バンド）",
+            "face-image": "/tl/face/airi_band.png"
+        },
+        {
+            "name": "アカネ",
+            "face-image": "/tl/face/akane.png"
+        },
+        {
+            "name": "アカネ（バニー）",
+            "face-image": "/tl/face/akane_bunny.png"
+        },
+        {
+            "name": "アカリ",
+            "face-image": "/tl/face/akari.png"
+        },
+        {
+            "name": "アカリ（正月）",
+            "face-image": "/tl/face/akari_newyear.png"
+        },
+        {
+            "name": "アコ",
+            "face-image": "/tl/face/ako.png"
+        },
+        {
+            "name": "アコ（ドレス）",
+            "face-image": "/tl/face/ako_dress.png"
+        },
+        {
+            "name": "アリス",
+            "face-image": "/tl/face/alice.png"
+        },
+        {
+            "name": "アリス（メイド）",
+            "face-image": "/tl/face/alice_maid.png"
+        },
+        {
+            "name": "アル",
+            "face-image": "/tl/face/aru.png"
+        },
+        {
+            "name": "アル（ドレス）",
+            "face-image": "/tl/face/aru_dress.png"
+        },
+        {
+            "name": "アル（正月）",
+            "face-image": "/tl/face/aru_newyear.png"
+        },
+        {
+            "name": "アスナ",
+            "face-image": "/tl/face/asuna.png"
+        },
+        {
+            "name": "アスナ（バニー）",
+            "face-image": "/tl/face/asuna_bunny.png"
+        },
+        {
+            "name": "アスナ（制服）",
+            "face-image": "/tl/face/asuna_private.png"
+        },
+        {
+            "name": "アツコ",
+            "face-image": "/tl/face/atsuko.png"
+        },
+        {
+            "name": "アツコ（水着）",
+            "face-image": "/tl/face/atsuko_swim.png"
+        },
+        {
+            "name": "アヤネ",
+            "face-image": "/tl/face/ayane.png"
+        },
+        {
+            "name": "アヤネ（水着）",
+            "face-image": "/tl/face/ayane_swim.png"
+        },
+        {
+            "name": "アズサ",
+            "face-image": "/tl/face/azusa.png"
+        },
+        {
+            "name": "アズサ（水着）",
+            "face-image": "/tl/face/azusa_swim.png"
+        },
+        {
+            "name": "チェリノ",
+            "face-image": "/tl/face/cherino.png"
+        },
+        {
+            "name": "チェリノ（温泉）",
+            "face-image": "/tl/face/cherino_onsen.png"
+        },
+        {
+            "name": "チアキ",
+            "face-image": "/tl/face/chiaki.png"
+        },
+        {
+            "name": "チヒロ",
+            "face-image": "/tl/face/chihiro.png"
+        },
+        {
+            "name": "チナツ",
+            "face-image": "/tl/face/chinatsu.png"
+        },
+        {
+            "name": "チナツ（温泉）",
+            "face-image": "/tl/face/chinatsu_onsen.png"
+        },
+        {
+            "name": "チセ",
+            "face-image": "/tl/face/chise.png"
+        },
+        {
+            "name": "チセ（水着）",
+            "face-image": "/tl/face/chise_swim.png"
+        },
+        {
+            "name": "エイミ",
+            "face-image": "/tl/face/eimi.png"
+        },
+        {
+            "name": "エイミ（水着）",
+            "face-image": "/tl/face/eimi_swim.png"
+        },
+        {
+            "name": "フィーナ",
+            "face-image": "/tl/face/fina.png"
+        },
+        {
+            "name": "フブキ",
+            "face-image": "/tl/face/fubuki.png"
+        },
+        {
+            "name": "フブキ（水着）",
+            "face-image": "/tl/face/fubuki_swim.png"
+        },
+        {
+            "name": "フウカ",
+            "face-image": "/tl/face/fuuka.png"
+        },
+        {
+            "name": "フウカ（正月）",
+            "face-image": "/tl/face/fuuka_newyear.png"
+        },
+        {
+            "name": "ハナエ",
+            "face-image": "/tl/face/hanae.png"
+        },
+        {
+            "name": "ハナエ（クリスマス）",
+            "face-image": "/tl/face/hanae_chiristmas.png"
+        },
+        {
+            "name": "ハナコ",
+            "face-image": "/tl/face/hanako.png"
+        },
+        {
+            "name": "ハナコ（水着）",
+            "face-image": "/tl/face/hanako_swim.png"
+        },
+        {
+            "name": "ハレ",
+            "face-image": "/tl/face/hare.png"
+        },
+        {
+            "name": "ハレ（キャンプ）",
+            "face-image": "/tl/face/hare_camp.png"
+        },
+        {
+            "name": "ハルカ",
+            "face-image": "/tl/face/haruka.png"
+        },
+        {
+            "name": "ハルカ（正月）",
+            "face-image": "/tl/face/haruka_newyear.png"
+        },
+        {
+            "name": "ハルナ",
+            "face-image": "/tl/face/haruna.png"
+        },
+        {
+            "name": "ハルナ（正月）",
+            "face-image": "/tl/face/haruna_newyear.png"
+        },
+        {
+            "name": "ハルナ（体操服）",
+            "face-image": "/tl/face/haruna_gym.png"
+        },
+        {
+            "name": "ハスミ",
+            "face-image": "/tl/face/hasumi.png"
+        },
+        {
+            "name": "ハスミ（体操服）",
+            "face-image": "/tl/face/hasumi_gym.png"
+        },
+        {
+            "name": "初音ミク",
+            "face-image": "/tl/face/hatsune_miku.png"
+        },
+        {
+            "name": "ヒビキ",
+            "face-image": "/tl/face/hibiki.png"
+        },
+        {
+            "name": "ヒビキ（応援団）",
+            "face-image": "/tl/face/hibiki_cheer.png"
+        },
+        {
+            "name": "ヒフミ",
+            "face-image": "/tl/face/hifumi.png"
+        },
+        {
+            "name": "ヒフミ（水着）",
+            "face-image": "/tl/face/hifumi_swim.png"
+        },
+        {
+            "name": "ヒナ",
+            "face-image": "/tl/face/hina.png"
+        },
+        {
+            "name": "ヒナ（水着）",
+            "face-image": "/tl/face/hina_swim.png"
+        },
+        {
+            "name": "ヒナ（ドレス）",
+            "face-image": "/tl/face/hina_dress.png"
+        },
+        {
+            "name": "ヒナタ",
+            "face-image": "/tl/face/hinata.png"
+        },
+        {
+            "name": "ヒナタ（水着）",
+            "face-image": "/tl/face/hinata_swim.png"
+        },        
+        {
+            "name": "ヒマリ",
+            "face-image": "/tl/face/himari.png"
+        },
+        {
+            "name": "ヒヨリ",
+            "face-image": "/tl/face/hiyori.png"
+        },
+        {
+            "name": "ヒヨリ（水着）",
+            "face-image": "/tl/face/hiyori_swim.png"
+        },
+        {
+            "name": "ホシノ",
+            "face-image": "/tl/face/hoshino.png"
+        },
+        {
+            "name": "ホシノ（水着）",
+            "face-image": "/tl/face/hoshino_swim.png"
+        },
+        {
+            "name": "ホシノ（臨戦）",
+            "face-image": "/tl/face/hoshino_battle.png"
+        },
+        {
+            "name": "イブキ",
+            "face-image": "/tl/face/ibuki.png"
+        },
+        {
+            "name": "イチカ",
+            "face-image": "/tl/face/ichika.png"
+        },
+        {
+            "name": "イオリ",
+            "face-image": "/tl/face/iori.png"
+        },
+        {
+            "name": "イオリ（水着）",
+            "face-image": "/tl/face/iori_swim.png"
+        },
+        {
+            "name": "イロハ",
+            "face-image": "/tl/face/iroha.png"
+        },
+        {
+            "name": "イズミ",
+            "face-image": "/tl/face/izumi.png"
+        },
+        {
+            "name": "イズミ（水着）",
+            "face-image": "/tl/face/izumi_swim.png"
+        },
+        {
+            "name": "イズナ",
+            "face-image": "/tl/face/izuna.png"
+        },
+        {
+            "name": "イズナ（水着）",
+            "face-image": "/tl/face/izuna_swim.png"
+        },
+        {
+            "name": "ジュンコ",
+            "face-image": "/tl/face/jyunko.png"
+        },
+        {
+            "name": "ジュンコ（正月）",
+            "face-image": "/tl/face/jyunko_newyear.png"
+        },
+        {
+            "name": "ジュリ",
+            "face-image": "/tl/face/jyuri.png"
+        },
+        {
+            "name": "ジュリ（アルバイト）",
+            "face-image": "/tl/face/jyuri_arbeit.png"
+        },
+        {
+            "name": "カエデ",
+            "face-image": "/tl/face/kaede.png"
+        },
+        {
+            "name": "カホ",
+            "face-image": "/tl/face/kaho.png"
+        },
+        {
+            "name": "カンナ",
+            "face-image": "/tl/face/kanna.png"
+        },
+        {
+            "name": "カンナ（水着）",
+            "face-image": "/tl/face/kanna_swim.png"
+        },
+        {
+            "name": "カリン",
+            "face-image": "/tl/face/karin.png"
+        },
+        {
+            "name": "カリン（バニー）",
+            "face-image": "/tl/face/karin_bunny.png"
+        },
+        {
+            "name": "カリン（制服）",
+            "face-image": "/tl/face/karin_private.png"
+        },
+        {
+            "name": "カスミ",
+            "face-image": "/tl/face/kasumi.png"
+        },
+        {
+            "name": "カヨコ",
+            "face-image": "/tl/face/kayoko.png"
+        },
+        {
+            "name": "カヨコ（正月）",
+            "face-image": "/tl/face/kayoko_newyear.png"
+        },
+        {
+            "name": "カヨコ（ドレス）",
+            "face-image": "/tl/face/kayoko_dress.png"
+        },
+        {
+            "name": "カズサ",
+            "face-image": "/tl/face/kazusa.png"
+        },
+        {
+            "name": "カズサ（バンド）",
+            "face-image": "/tl/face/kazusa_band.png"
+        },
+        {
+            "name": "キキョウ",
+            "face-image": "/tl/face/kikyou.png"
+        },
+        {
+            "name": "キララ",
+            "face-image": "/tl/face/kirara.png"
+        },
+        {
+            "name": "キリノ",
+            "face-image": "/tl/face/kirino.png"
+        },
+        {
+            "name": "キリノ（水着）",
+            "face-image": "/tl/face/kirino_swim.png"
+        },
+        {
+            "name": "キサキ",
+            "face-image": "/tl/face/kisaki.png"
+        },
+        {
+            "name": "コハル",
+            "face-image": "/tl/face/koharu.png"
+        },
+        {
+            "name": "コハル（水着）",
+            "face-image": "/tl/face/koharu_swim.png"
+        },
+        {
+            "name": "ココナ",
+            "face-image": "/tl/face/kokona.png"
+        },
+        {
+            "name": "コタマ",
+            "face-image": "/tl/face/kotama.png"
+        },
+        {
+            "name": "コタマ（キャンプ）",
+            "face-image": "/tl/face/kotama_camp.png"
+        },
+        {
+            "name": "コトリ",
+            "face-image": "/tl/face/kotori.png"
+        },
+        {
+            "name": "コトリ（応援団）",
+            "face-image": "/tl/face/kotori_cheer.png"
+        },
+        {
+            "name": "コユキ",
+            "face-image": "/tl/face/koyuki.png"
+        },
+        {
+            "name": "マキ",
+            "face-image": "/tl/face/maki.png"
+        },
+        {
+            "name": "マキ（キャンプ）",
+            "face-image": "/tl/face/maki_camp.png"
+        },
+        {
+            "name": "マコト",
+            "face-image": "/tl/face/makoto.png"
+        },
+        {
+            "name": "マリナ",
+            "face-image": "/tl/face/marina.png"
+        },
+        {
+            "name": "マリナ（チーパオ）",
+            "face-image": "/tl/face/marina_qipao.png"
+        },
+        {
+            "name": "マリー",
+            "face-image": "/tl/face/mary.png"
+        },
+        {
+            "name": "マリー（体操服）",
+            "face-image": "/tl/face/mary_gym.png"
+        },
+        {
+            "name": "マリー（アイドル）",
+            "face-image": "/tl/face/mary_idol.png"
+        },
+        {
+            "name": "マシロ",
+            "face-image": "/tl/face/mashiro.png"
+        },
+        {
+            "name": "マシロ（水着）",
+            "face-image": "/tl/face/mashiro_swim.png"
+        },
+        {
+            "name": "メグ",
+            "face-image": "/tl/face/megu.png"
+        },
+        {
+            "name": "メル",
+            "face-image": "/tl/face/meru.png"
+        },
+        {
+            "name": "ミチル",
+            "face-image": "/tl/face/michiru.png"
+        },
+        {
+            "name": "ミドリ",
+            "face-image": "/tl/face/midori.png"
+        },
+        {
+            "name": "ミドリ（メイド）",
+            "face-image": "/tl/face/midori_maid.png"
+        },
+        {
+            "name": "ミカ",
+            "face-image": "/tl/face/mika.png"
+        },
+        {
+            "name": "ミモリ",
+            "face-image": "/tl/face/mimori.png"
+        },
+        {
+            "name": "ミモリ（水着）",
+            "face-image": "/tl/face/mimori_swim.png"
+        },
+        {
+            "name": "ミナ",
+            "face-image": "/tl/face/mina.png"
+        },
+        {
+            "name": "ミネ",
+            "face-image": "/tl/face/mine.png"
+        },
+        {
+            "name": "ミネ（アイドル）",
+            "face-image": "/tl/face/mine_idol.png"
+        },
+        {
+            "name": "ミノリ",
+            "face-image": "/tl/face/minori.png"
+        },
+        {
+            "name": "御坂美琴",
+            "face-image": "/tl/face/misaka_mikoto.png"
+        },
+        {
+            "name": "ミサキ",
+            "face-image": "/tl/face/misaki.png"
+        },
+        {
+            "name": "ミヤコ",
+            "face-image": "/tl/face/miyako.png"
+        },
+        {
+            "name": "ミヤコ（水着）",
+            "face-image": "/tl/face/miyako_swim.png"
+        },
+        {
+            "name": "ミユ",
+            "face-image": "/tl/face/miyu.png"
+        },
+        {
+            "name": "ミユ（水着）",
+            "face-image": "/tl/face/miyu_swim.png"
+        },
+        {
+            "name": "モエ",
+            "face-image": "/tl/face/moe.png"
+        },
+        {
+            "name": "モエ（水着）",
+            "face-image": "/tl/face/moe_swim.png"
+        },
+        {
+            "name": "モミジ",
+            "face-image": "/tl/face/momiji.png"
+        },
+        {
+            "name": "モモイ",
+            "face-image": "/tl/face/momoi.png"
+        },
+        {
+            "name": "モモイ（メイド）",
+            "face-image": "/tl/face/momoi_maid.png"
+        },
+        {
+            "name": "ムツキ",
+            "face-image": "/tl/face/mutsuki.png"
+        },
+        {
+            "name": "ムツキ（正月）",
+            "face-image": "/tl/face/mutsuki_newyear.png"
+        },
+        {
+            "name": "ナギサ",
+            "face-image": "/tl/face/nagisa.png"
+        },
+        {
+            "name": "ナツ",
+            "face-image": "/tl/face/natsu.png"
+        },
+        {
+            "name": "ネル",
+            "face-image": "/tl/face/neru.png"
+        },
+        {
+            "name": "ネル（バニー）",
+            "face-image": "/tl/face/neru_bunny.png"
+        },
+        {
+            "name": "ネル（制服）",
+            "face-image": "/tl/face/neru_uniform.png"
+        },
+        {
+            "name": "ノア",
+            "face-image": "/tl/face/noa.png"
+        },
+        {
+            "name": "ノア（パジャマ）",
+            "face-image": "/tl/face/noa_pajama.png"
+        },
+        {
+            "name": "ノドカ",
+            "face-image": "/tl/face/nodoka.png"
+        },
+        {
+            "name": "ノドカ（温泉）",
+            "face-image": "/tl/face/nodoka_onsen.png"
+        },
+        {
+            "name": "ノノミ",
+            "face-image": "/tl/face/nonomi.png"
+        },
+        {
+            "name": "ノノミ（水着）",
+            "face-image": "/tl/face/nonomi_swim.png"
+        },
+        {
+            "name": "レイジョ",
+            "face-image": "/tl/face/reijyo.png"
+        },
+        {
+            "name": "レイサ",
+            "face-image": "/tl/face/reisa.png"
+        },
+        {
+            "name": "レンゲ",
+            "face-image": "/tl/face/renge.png"
+        },
+        {
+            "name": "リオ",
+            "face-image": "/tl/face/rio.png"
+        },
+        {
+            "name": "ルミ",
+            "face-image": "/tl/face/rumi.png"
+        },
+        {
+            "name": "サキ",
+            "face-image": "/tl/face/saki.png"
+        },
+        {
+            "name": "サキ（水着）",
+            "face-image": "/tl/face/saki_swim.png"
+        },
+        {
+            "name": "サクラコ",
+            "face-image": "/tl/face/sakurako.png"
+        },
+        {
+            "name": "サクラコ（アイドル）",
+            "face-image": "/tl/face/sakurako_idol.png"
+        },
+        {
+            "name": "サオリ",
+            "face-image": "/tl/face/saori.png"
+        },
+        {
+            "name": "サオリ（水着）",
+            "face-image": "/tl/face/saori_swim.png"
+        },
+        {
+            "name": "佐天涙子",
+            "face-image": "/tl/face/saten_ruiko.png"
+        },
+        {
+            "name": "サツキ",
+            "face-image": "/tl/face/satsuki.png"
+        },
+        {
+            "name": "サヤ",
+            "face-image": "/tl/face/saya.png"
+        },
+        {
+            "name": "サヤ（私服）",
+            "face-image": "/tl/face/saya_private.png"
+        },
+        {
+            "name": "セイア",
+            "face-image": "/tl/face/seia.png"
+        },
+        {
+            "name": "セナ",
+            "face-image": "/tl/face/sena.png"
+        },
+        {
+            "name": "セナ（私服）",
+            "face-image": "/tl/face/sena_private.png"
+        },
+        {
+            "name": "セリカ",
+            "face-image": "/tl/face/serika.png"
+        },
+        {
+            "name": "セリカ（水着）",
+            "face-image": "/tl/face/serika_swim.png"
+        },
+        {
+            "name": "セリカ（正月）",
+            "face-image": "/tl/face/serika_newyear.png"
+        },
+        {
+            "name": "セリナ",
+            "face-image": "/tl/face/serina.png"
+        },
+        {
+            "name": "セリナ（クリスマス）",
+            "face-image": "/tl/face/serina_chiristmas.png"
+        },
+        {
+            "name": "シグレ",
+            "face-image": "/tl/face/shigure.png"
+        },
+        {
+            "name": "シグレ（温泉）",
+            "face-image": "/tl/face/shigure_onsen.png"
+        },
+        {
+            "name": "シミコ",
+            "face-image": "/tl/face/shimiko.png"
+        },
+        {
+            "name": "シロコ",
+            "face-image": "/tl/face/shiroko.png"
+        },
+        {
+            "name": "シロコ（水着）",
+            "face-image": "/tl/face/shiroko_swim.png"
+        },
+        {
+            "name": "シロコ（ライディング）",
+            "face-image": "/tl/face/shiroko_riding.png"
+        },
+        {
+            "name": "シロコ＊テラー",
+            "face-image": "/tl/face/shiroko_terror.png"
+        },
+        {
+            "name": "シズコ",
+            "face-image": "/tl/face/shizuko.png"
+        },
+        {
+            "name": "シズコ（水着）",
+            "face-image": "/tl/face/shizuko_swim.png"
+        },
+        {
+            "name": "スミレ",
+            "face-image": "/tl/face/sumire.png"
+        },
+        {
+            "name": "スズミ",
+            "face-image": "/tl/face/suzumi.png"
+        },
+        {
+            "name": "食蜂操祈",
+            "face-image": "/tl/face/syokuhou_misaki.png"
+        },
+        {
+            "name": "シュン",
+            "face-image": "/tl/face/syun.png"
+        },
+        {
+            "name": "シュン（幼女）",
+            "face-image": "/tl/face/syun_loli.png"
+        },
+        {
+            "name": "トキ",
+            "face-image": "/tl/face/toki.png"
+        },
+        {
+            "name": "トキ（バニー）",
+            "face-image": "/tl/face/toki_bunny.png"
+        },
+        {
+            "name": "トモエ",
+            "face-image": "/tl/face/tomoe.png"
+        },
+        {
+            "name": "トモエ（チーパオ）",
+            "face-image": "/tl/face/tomoe_qipao.png"
+        },
+        {
+            "name": "ツバキ",
+            "face-image": "/tl/face/tsubaki.png"
+        },
+        {
+            "name": "ツバキ（ガイド）",
+            "face-image": "/tl/face/tsubaki_guide.png"
+        },
+        {
+            "name": "ツクヨ",
+            "face-image": "/tl/face/tsukuyo.png"
+        },
+        {
+            "name": "ツルギ",
+            "face-image": "/tl/face/tsurugi.png"
+        },
+        {
+            "name": "ツルギ（水着）",
+            "face-image": "/tl/face/tsurugi_swim.png"
+        },
+        {
+            "name": "ウイ",
+            "face-image": "/tl/face/ui.png"
+        },
+        {
+            "name": "ウイ（水着）",
+            "face-image": "/tl/face/ui_swim.png"
+        },
+        {
+            "name": "ウミカ",
+            "face-image": "/tl/face/umika.png"
+        },
+        {
+            "name": "ウタハ",
+            "face-image": "/tl/face/utaha.png"
+        },
+        {
+            "name": "ウタハ（応援団）",
+            "face-image": "/tl/face/utaha_cheer.png"
+        },
+        {
+            "name": "ワカモ",
+            "face-image": "/tl/face/wakamo.png"
+        },
+        {
+            "name": "ワカモ（水着）",
+            "face-image": "/tl/face/wakamo_swim.png"
+        },
+        {
+            "name": "ヨシミ",
+            "face-image": "/tl/face/yoshimi.png"
+        },
+        {
+            "name": "ヨシミ（バンド）",
+            "face-image": "/tl/face/yoshimi_band.png"
+        },
+        {
+            "name": "ユカリ",
+            "face-image": "/tl/face/yukari.png"
+        },
+        {
+            "name": "ユウカ",
+            "face-image": "/tl/face/yuuka.png"
+        },
+        {
+            "name": "ユウカ（体操服）",
+            "face-image": "/tl/face/yuuka_gym.png"
+        },
+        {
+            "name": "ユウカ（パジャマ）",
+            "face-image": "/tl/face/yuuka_pajama.png"
+        },
+        {
+            "name": "ユズ",
+            "face-image": "/tl/face/yuzu.png"
+        },
+        {
+            "name": "ユズ（メイド）",
+            "face-image": "/tl/face/yuzu_maid.png"
+        }
+    ]
+}
+

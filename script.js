@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         "イズナ",
         "イズナ（水着）",
         "イズミ",
+        "イズミ（正月）",
         "イズミ（水着）",
         "イチカ",
         "イブキ",
@@ -239,15 +240,44 @@ document.addEventListener('DOMContentLoaded', function () {
         const battleField = document.getElementById('battleField').value;
         const bossName = document.getElementById('bossName').value;
         const armor = document.getElementById('armor').value;
+        const difficulty = document.getElementById('difficulty').value;
         const includeStudents = includeStudentsTagify.value.map(tag => tag.value);
         const excludeStudents = excludeStudentsTagify.value.map(tag => tag.value);
 
         let filtered = records.filter(record => {
+            let score = record["score"]; // recordからscoreを取得
+            console.log(score);
+            let difficultyFilter = true; // difficultyによるフィルタリングの初期値をtrueに設定
+
+            if (difficulty) { // difficultyが指定されている場合のみフィルタリング
+                switch (difficulty) {
+                    case "LUNATIC":
+                        difficultyFilter = score >= 44025003;
+                        break;
+                    case "TORMENT":
+                        difficultyFilter = score >= 31708002 && score <= 44025002;
+                        break;
+                    case "INSANE":
+                        difficultyFilter = score >= 21016002 && score <= 31708001;
+                        break;
+                    case "EXTREME":
+                        difficultyFilter = score >= 10160001 && score <= 21016000;
+                        break;
+                    case "HARDCORE":
+                        difficultyFilter = score <= 10160000;
+                        break;
+                    default:
+                        difficultyFilter = true; // difficultyが上記以外の場合はフィルタリングしない
+                }
+            }
+
+
             return (!battleField || record["battle-field"] === battleField) &&
                    (!bossName || record["boss-name"] === bossName) &&
                    (!armor || record["armor"] === armor) &&
                    (includeStudents.length === 0 || includeStudents.every(st => record.students.includes(st))) &&
-                   (excludeStudents.length === 0 || excludeStudents.every(st => !record.students.includes(st)));
+                   (excludeStudents.length === 0 || excludeStudents.every(st => !record.students.includes(st))) &&
+                   difficultyFilter; // difficultyによるフィルタリング結果を追加
         });
 
         filtered.sort((a, b) => b.score - a.score);
@@ -259,19 +289,38 @@ document.addEventListener('DOMContentLoaded', function () {
         resultList.innerHTML = '';
 
         if (results.length === 0) {
-            resultList.innerHTML = '<li class="result-item">該当するデータがありません。</li>';
+            resultList.innerHTML = '<li class="no-data">該当するデータがありません。</li>';
             return;
         }
 
-        results.forEach(record => {
-            const li = document.createElement('li');
-            li.classList.add('result-item');
-            li.innerHTML = `
-                <strong>スコア:</strong> ${record.score.toLocaleString()} <br>
-                <strong>生徒:</strong> ${record.students.join(', ')} <br>
-                <a href="${record.URL}" target="_blank">動画リンク</a>
-            `;
-            resultList.appendChild(li);
-        });
+        fetch('face.json')
+            .then(response => response.json())
+            .then(faceData => {
+                results.forEach(record => {
+                    const li = document.createElement('li');
+                    li.classList.add('result-item');
+
+                    let studentsHtml = '<div class="students-grid">';
+                    record.students.forEach(studentName => {
+                        const studentFace = faceData.record.find(face => face.name === studentName);
+                        const faceImage = studentFace ? `<img src="${studentFace["face-image"]}" alt="${studentName}">` : '';
+                        studentsHtml += `
+                            <div class="student-item">
+                                ${faceImage}
+                                <span>${studentName}</span>
+                            </div>
+                        `;
+                    });
+                    studentsHtml += '</div>';
+
+                    li.innerHTML = `
+                        <strong>スコア：${record.score.toLocaleString()}</strong>
+                        ${studentsHtml}
+                        <a href="${record.URL}" class="video-link-btn" target="_blank">動画を見る</a>
+                    `;
+                    resultList.appendChild(li);
+                });
+            })
+            .catch(error => console.error('顔写真データの読み込みエラー:', error));
     }
 });
