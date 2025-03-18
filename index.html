@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>参考TL検索ツール</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
 </head>
 <body>
     <div class="container">
@@ -42,13 +43,11 @@
                 <option value="弾力装甲" selected>弾力装甲</option>
             </select>
 
-            <label>含める生徒（半角カンマ区切り）:</label>
-            <input type="text" id="includeStudents" placeholder="例: ハナコ（水着）, キキョウ">
+            <label>含める生徒:</label>
+            <textarea id="includeStudents"></textarea>
 
-            <label>除外する生徒（半角カンマ区切り）:</label>
-            <input type="text" id="excludeStudents" placeholder="例: シュン, アコ">
-
-            <p>※衣装違いのカッコは全角カッコでお願いします。</p>
+            <label>除外する生徒:</label>
+            <textarea id="excludeStudents"></textarea>
 
             <button id="searchBtn">検索</button>
         </div>
@@ -59,6 +58,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
     <script src="script.js"></script>
 </body>
 </html>

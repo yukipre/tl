@@ -96,3 +96,10 @@ button:hover {
         padding: 8px;
     }
 }
+
+/* タグ入力エリアのスタイル調整 */
+.tagify {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+}
