@@ -330,10 +330,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     `;
 
                     li.innerHTML = `
+                        ${memoHtml}
                         <strong>スコア：${record.score.toLocaleString()}</strong>
                         ${studentsHtml}
                         <a href="${record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
-                        ${memoHtml}
                     `;
                     resultList.appendChild(li);
 
