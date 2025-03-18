@@ -69,12 +69,12 @@ button:hover {
 .result-item {
     background: #e9ecef;
     padding: 20px;
-    padding-bottom: 120px; /* メモエリアの追加に伴い、余白を広げました */
+    padding-bottom: 120px;
     border-radius: 8px;
     margin: 10px 0;
     font-size: 12px;
     word-break: break-word;
-    position: relative; /* 相対配置を有効にする */
+    position: relative;
 }
 
 .result-item a{
@@ -93,7 +93,7 @@ button:hover {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 10px;
-    margin-top: 20px; /* スコアとの間隔を調整 */
+    margin-top: 20px;
 }
 
 .student-item {
@@ -192,7 +192,7 @@ button:hover {
     position: absolute;
     bottom: 20px;
     left: 20px;
-    width: calc(100% - 60px); /* 左右の余白と動画リンクボタンの幅を考慮 */
+    width: calc(100% - 240px); /* 動画を観るボタンの幅(20px+100px)と左右の余白を考慮 */
 }
 
 .memo-area textarea {
@@ -203,4 +203,11 @@ button:hover {
     border-radius: 4px;
     font-size: 14px;
     resize: vertical;
+}
+
+/* 動画を観るボタンの位置調整 */
+.video-link-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
 }
