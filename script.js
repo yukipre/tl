@@ -228,15 +228,23 @@ document.addEventListener('DOMContentLoaded', function () {
         dropdown: { enabled: 1 }
     });
 
+    // 検索条件の復元
+    restoreSearchConditions();
+
     // 検索ボタンのイベント
     document.getElementById('searchBtn').addEventListener('click', () => {
+        saveSearchConditions(); // 検索条件を保存
+        fetchDataAndFilter();
+    });
+
+    function fetchDataAndFilter() {
         const scrollPosition = window.scrollY; // 現在のスクロール位置を保存
 
         fetch('data.json')
             .then(response => response.json())
             .then(data => filterResults(data.record, scrollPosition))
             .catch(error => console.error('データの読み込みエラー:', error));
-    });
+    }
 
     function filterResults(records, scrollPosition) {
         const battleField = document.getElementById('battleField').value;
@@ -327,4 +335,34 @@ document.addEventListener('DOMContentLoaded', function () {
         
         window.scrollTo(0, scrollPosition); // 保存したスクロール位置に復元
     }
+
+    function saveSearchConditions() {
+        localStorage.setItem('battleField', document.getElementById('battleField').value);
+        localStorage.setItem('bossName', document.getElementById('bossName').value);
+        localStorage.setItem('armor', document.getElementById('armor').value);
+        localStorage.setItem('difficulty', document.getElementById('difficulty').value);
+        localStorage.setItem('includeStudents', JSON.stringify(includeStudentsTagify.value.map(tag => tag.value)));
+        localStorage.setItem('excludeStudents', JSON.stringify(excludeStudentsTagify.value.map(tag => tag.value)));
+    }
+
+    function restoreSearchConditions() {
+        const battleField = localStorage.getItem('battleField');
+        const bossName = localStorage.getItem('bossName');
+        const armor = localStorage.getItem('armor');
+        const difficulty = localStorage.getItem('difficulty');
+        const includeStudents = JSON.parse(localStorage.getItem('includeStudents')) || [];
+        const excludeStudents = JSON.parse(localStorage.getItem('excludeStudents')) || [];
+
+        if (battleField) document.getElementById('battleField').value = battleField;
+        if (bossName) document.getElementById('bossName').value = bossName;
+        if (armor) document.getElementById('armor').value = armor;
+        if (difficulty) document.getElementById('difficulty').value = difficulty;
+        includeStudents.forEach(student => includeStudentsTagify.addTags([student]));
+        excludeStudents.forEach(student => excludeStudentsTagify.addTags([student]));
+
+        if (battleField || bossName || armor || difficulty || includeStudents.length > 0 || excludeStudents.length > 0) {
+            fetchDataAndFilter(); // 条件が復元されたら自動的に検索を実行
+        }
+    }
+    
 });
