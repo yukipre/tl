@@ -308,13 +308,13 @@ document.addEventListener('DOMContentLoaded', function () {
         displayResults(filtered, scrollPosition);
     }
 
-    function displayResults(results, scrollPosition) {
+    function displayResults(results, scrollPosition, showFavoritesOnly) {
         const resultList = document.getElementById('resultList');
         resultList.innerHTML = '';
     
         if (results.length === 0) {
             resultList.innerHTML = '<li class="no-data">該当するデータがありません。</li>';
-            window.scrollTo(0, scrollPosition); // 保存したスクロール位置に復元
+            window.scrollTo(0, scrollPosition);
             return;
         }
     
@@ -324,6 +324,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 results.forEach(record => {
                     const li = document.createElement('li');
                     li.classList.add('result-item');
+    
+                    // 追加情報を表示する要素
+                    let additionalInfo = '';
+                    if (showFavoritesOnly) {
+                        additionalInfo = `
+                            <p>戦場: ${record["battle-field"]}</p>
+                            <p>ボス名: ${record["boss-name"]}</p>
+                            <p>装甲タイプ: ${record["armor"]}</p>
+                        `;
+                    }
     
                     let studentsHtml = '<div class="students-grid">';
                     record.students.forEach(studentName => {
@@ -344,6 +354,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
                     li.innerHTML = `
                         <strong>スコア：${record.score.toLocaleString()}</strong>
+                        ${additionalInfo}
                         ${studentsHtml}
                         <textarea class="memo-input" data-id="${record.id}" placeholder="自分だけの簡単なメモを残せます（自動保存）">${savedMemo}</textarea>
                         <a href="${record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
