@@ -188,7 +188,7 @@ button:hover {
 }
 
 /* メモ欄のスタイル */
-.memo-textarea {
+.memo-input {
     width: 100%;
     min-height: 60px;
     padding: 10px;
@@ -201,14 +201,14 @@ button:hover {
     transition: border-color 0.3s;
 }
 
-.memo-textarea:focus {
+.memo-input:focus {
     border-color: #007BFF;
     outline: none;
 }
 
 /* スマホ対応 */
 @media screen and (max-width: 768px) {
-    .memo-textarea {
+    .memo-input {
         min-height: 50px;
         font-size: 12px;
         padding: 8px;
