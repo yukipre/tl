@@ -256,7 +256,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let filtered = records.filter(record => {
             let score = record["score"]; // recordからscoreを取得
-            console.log(score);
             let difficultyFilter = true; // difficultyによるフィルタリングの初期値をtrueに設定
 
             if (difficulty) { // difficultyが指定されている場合のみフィルタリング
@@ -294,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function () {
         displayResults(filtered, scrollPosition); // スクロール位置をdisplayResultsに渡す
     }
 
-    function displayResults(results) {
+    function displayResults(results, scrollPosition) {
         const resultList = document.getElementById('resultList');
         resultList.innerHTML = '';
 
@@ -323,27 +322,23 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                     studentsHtml += '</div>';
 
-                    // 評価エリアの追加
-                    let ratingHtml = `
-                    <div class="rating" data-tl-id="${record.id}">
-                        <span class="star" data-value="1">★</span>
-                        <span class="star" data-value="2">★</span>
-                        <span class="star" data-value="3">★</span>
-                        <span class="star" data-value="4">★</span>
-                        <span class="star" data-value="5">★</span>
-                    </div>
-                `;
+                    // メモエリアの追加
+                    let memoHtml = `
+                        <div class="memo-area" data-tl-id="${record.id}">
+                            <textarea placeholder="メモを入力してください"></textarea>
+                        </div>
+                    `;
 
                     li.innerHTML = `
                         <strong>スコア：${record.score.toLocaleString()}</strong>
                         ${studentsHtml}
                         <a href="${record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
-                        ${ratingHtml}
+                        ${memoHtml}
                     `;
                     resultList.appendChild(li);
 
-                    // 評価の初期化と表示
-                    initRating(record.id);
+                    // メモの初期化と表示
+                    initMemo(record.id);
                 });
             })
             .catch(error => console.error('顔写真データの読み込みエラー:', error));
@@ -380,26 +375,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // 評価の初期化と表示
-    function initRating(tlId) {
-        const ratingDiv = document.querySelector(`.rating[data-tl-id="${tlId}"]`);
-        const stars = ratingDiv.querySelectorAll('.star');
-        const userRatings = JSON.parse(localStorage.getItem('userRatings')) || {};
-        const userRating = userRatings[tlId] || 0;
+    // メモの初期化と表示
+    function initMemo(tlId) {
+        const memoArea = document.querySelector(`.memo-area[data-tl-id="${tlId}"]`);
+        const textarea = memoArea.querySelector('textarea');
+        const userMemos = JSON.parse(localStorage.getItem('userMemos')) || {};
+        const userMemo = userMemos[tlId] || '';
 
-        stars.forEach((star, index) => {
-            if (index < userRating) {
-                star.classList.add('active');
-            } else {
-                star.classList.remove('active');
-            }
+        textarea.value = userMemo;
 
-            star.addEventListener('click', () => {
-                const rating = index + 1;
-                userRatings[tlId] = rating;
-                localStorage.setItem('userRatings', JSON.stringify(userRatings));
-                initRating(tlId);
-            });
+        textarea.addEventListener('input', () => {
+            userMemos[tlId] = textarea.value;
+            localStorage.setItem('userMemos', JSON.stringify(userMemos));
         });
     }
     
