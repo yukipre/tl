@@ -234,19 +234,24 @@ document.addEventListener('DOMContentLoaded', function () {
     // 検索ボタンのイベント
     document.getElementById('searchBtn').addEventListener('click', () => {
         saveSearchConditions(); // 検索条件を保存
-        fetchDataAndFilter();
+        fetchDataAndFilter(false); // 通常検索
     });
 
-    function fetchDataAndFilter() {
+    // お気に入りボタンのイベント
+    document.getElementById('favoriteBtn').addEventListener('click', () => {
+        fetchDataAndFilter(true); // お気に入り検索
+    });
+
+    function fetchDataAndFilter(showFavoritesOnly) {
         const scrollPosition = window.scrollY; // 現在のスクロール位置を保存
 
         fetch('data.json')
             .then(response => response.json())
-            .then(data => filterResults(data.record, scrollPosition))
+            .then(data => filterResults(data.record, scrollPosition, showFavoritesOnly))
             .catch(error => console.error('データの読み込みエラー:', error));
     }
 
-    function filterResults(records, scrollPosition) {
+    function filterResults(records, scrollPosition, showFavoritesOnly) {
         const battleField = document.getElementById('battleField').value;
         const bossName = document.getElementById('bossName').value;
         const armor = document.getElementById('armor').value;
@@ -256,7 +261,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let filtered = records.filter(record => {
             let score = record["score"]; // recordからscoreを取得
-            console.log(score);
             let difficultyFilter = true; // difficultyによるフィルタリングの初期値をtrueに設定
 
             if (difficulty) { // difficultyが指定されている場合のみフィルタリング
@@ -281,8 +285,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
+            const isFavorite = JSON.parse(localStorage.getItem(`favorite_${record.id}`)) || false;
 
-            return (!battleField || record["battle-field"] === battleField) &&
+            return (!showFavoritesOnly || isFavorite) &&
+                   (!battleField || record["battle-field"] === battleField) &&
                    (!bossName || record["boss-name"] === bossName) &&
                    (!armor || record["armor"] === armor) &&
                    (includeStudents.length === 0 || includeStudents.every(st => record.students.includes(st))) &&
@@ -313,11 +319,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     let studentsHtml = '<div class="students-grid">';
                     record.students.forEach(studentName => {
                         const studentFace = faceData.record.find(face => face.name === studentName);
-                        const faceImage = studentFace ? `<img src="${studentFace["face-image"]}" alt="${studentName}">` : '';
+                        const faceImage = studentFace ? `<img src="<span class="math-inline">\{studentFace\["face\-image"\]\}" alt\="</span>{studentName}">` : '';
                         studentsHtml += `
                             <div class="student-item">
-                                ${faceImage}
-                                <span>${studentName}</span>
+                                <span class="math-inline">\{faceImage\}
+<span\></span>{studentName}</span>
                             </div>
                         `;
                     });
@@ -325,12 +331,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     const memoKey = `memo_${record.id}`;
                     const savedMemo = localStorage.getItem(memoKey) || "";
+                    const isFavorite = JSON.parse(localStorage.getItem(`favorite_${record.id}`)) || false;
 
                     li.innerHTML = `
                         <strong>スコア：${record.score.toLocaleString()}</strong>
-                        ${studentsHtml}
-                        <textarea class="memo-input" data-id="${record.id}" placeholder="自分だけの簡単なメモを残せます（自動保存）">${savedMemo}</textarea>
-                        <a href="${record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
+                        <span class="math-inline">\{studentsHtml\}
+<textarea class\="memo\-input" data\-id\="</span>{record.id}" placeholder="自分だけの簡単なメモを残せます（自動保存）"><span class="math-inline">\{savedMemo\}</textarea\>
+<a href\="</span>{record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
+                        <button class="favorite-btn <span class="math-inline">\{isFavorite ? 'favorited' \: ''\}" data\-id\="</span>{record.id}">
+                            <i class="fas fa-star"></i>
+                        </button>
                     `;
                     resultList.appendChild(li);
                 });
@@ -341,10 +351,19 @@ document.addEventListener('DOMContentLoaded', function () {
                         localStorage.setItem(`memo_${id}`, event.target.value);
                     });
                 });
-                
+
+                document.querySelectorAll('.favorite-btn').forEach(button => {
+                    button.addEventListener('click', event => {
+                        const id = event.target.getAttribute('data-id');
+                        const isFavorite = JSON.parse(localStorage.getItem(`favorite_${id}`)) || false;
+                        localStorage.setItem(`favorite_${id}`, JSON.stringify(!isFavorite));
+                        event.target.classList.toggle('favorited');
+                    });
+                });
+
             })
             .catch(error => console.error('顔写真データの読み込みエラー:', error));
-        
+
         window.scrollTo(0, scrollPosition); // 保存したスクロール位置に復元
     }
 
@@ -373,8 +392,8 @@ document.addEventListener('DOMContentLoaded', function () {
         excludeStudents.forEach(student => excludeStudentsTagify.addTags([student]));
 
         if (battleField || bossName || armor || difficulty || includeStudents.length > 0 || excludeStudents.length > 0) {
-            fetchDataAndFilter(); // 条件が復元されたら自動的に検索を実行
+            fetchDataAndFilter(false); // 条件が復元されたら自動的に検索を実行
         }
     }
-    
+
 });
