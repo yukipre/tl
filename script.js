@@ -230,13 +230,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 検索ボタンのイベント
     document.getElementById('searchBtn').addEventListener('click', () => {
+        const scrollPosition = window.scrollY; // 現在のスクロール位置を保存
+
         fetch('data.json')
             .then(response => response.json())
-            .then(data => filterResults(data.record))
+            .then(data => filterResults(data.record, scrollPosition))
             .catch(error => console.error('データの読み込みエラー:', error));
     });
 
-    function filterResults(records) {
+    function filterResults(records, scrollPosition) {
         const battleField = document.getElementById('battleField').value;
         const bossName = document.getElementById('bossName').value;
         const armor = document.getElementById('armor').value;
@@ -281,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         filtered.sort((a, b) => b.score - a.score);
-        displayResults(filtered);
+        displayResults(filtered, scrollPosition); // スクロール位置をdisplayResultsに渡す
     }
 
     function displayResults(results) {
@@ -322,5 +324,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             })
             .catch(error => console.error('顔写真データの読み込みエラー:', error));
+        
+        window.scrollTo(0, scrollPosition); // 保存したスクロール位置に復元
     }
 });
