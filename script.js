@@ -288,8 +288,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const isFavorite = JSON.parse(localStorage.getItem(`favorite_${record.id}`)) || false;
 
             return (!showFavoritesOnly || isFavorite) &&
-                   (!battleField || record["battle-field"] === battleField) &&
-                   (!bossName || record["boss-name"] === bossName) &&
+                   (!showFavoritesOnly && (!battleField || record["battle-field"] === battleField)) &&
+                   (!showFavoritesOnly && (!bossName || record["boss-name"] === bossName)) &&
                    (!armor || record["armor"] === armor) &&
                    (includeStudents.length === 0 || includeStudents.every(st => record.students.includes(st))) &&
                    (excludeStudents.length === 0 || excludeStudents.every(st => !record.students.includes(st))) &&
@@ -355,10 +355,10 @@ document.addEventListener('DOMContentLoaded', function () {
     
                 document.querySelectorAll('.favorite-btn').forEach(button => {
                     button.addEventListener('click', event => {
-                        const id = event.target.getAttribute('data-id');
+                        const id = event.currentTarget.getAttribute('data-id'); // event.target -> event.currentTarget に変更
                         const isFavorite = JSON.parse(localStorage.getItem(`favorite_${id}`)) || false;
                         localStorage.setItem(`favorite_${id}`, JSON.stringify(!isFavorite));
-                        event.target.classList.toggle('favorited');
+                        event.currentTarget.classList.toggle('favorited'); // event.target -> event.currentTarget に変更
                     });
                 });
     
