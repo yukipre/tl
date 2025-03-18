@@ -237,11 +237,6 @@ document.addEventListener('DOMContentLoaded', function () {
         fetchDataAndFilter();
     });
 
-    // お気に入りを表示ボタンのイベント
-    document.getElementById('favoriteViewBtn').addEventListener('click', () => {
-        displayFavorites();
-    });
-
     function fetchDataAndFilter() {
         const scrollPosition = window.scrollY; // 現在のスクロール位置を保存
 
@@ -288,11 +283,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
             return (!battleField || record["battle-field"] === battleField) &&
-                (!bossName || record["boss-name"] === bossName) &&
-                (!armor || record["armor"] === armor) &&
-                (includeStudents.length === 0 || includeStudents.every(st => record.students.includes(st))) &&
-                (excludeStudents.length === 0 || excludeStudents.every(st => !record.students.includes(st))) &&
-                difficultyFilter; // difficultyによるフィルタリング結果を追加
+                   (!bossName || record["boss-name"] === bossName) &&
+                   (!armor || record["armor"] === armor) &&
+                   (includeStudents.length === 0 || includeStudents.every(st => record.students.includes(st))) &&
+                   (excludeStudents.length === 0 || excludeStudents.every(st => !record.students.includes(st))) &&
+                   difficultyFilter; // difficultyによるフィルタリング結果を追加
         });
 
         filtered.sort((a, b) => b.score - a.score);
@@ -314,16 +309,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 results.forEach(record => {
                     const li = document.createElement('li');
                     li.classList.add('result-item');
-                    li.dataset.id = record.id; // データ属性にIDを保存
 
                     let studentsHtml = '<div class="students-grid">';
                     record.students.forEach(studentName => {
                         const studentFace = faceData.record.find(face => face.name === studentName);
-                        const faceImage = studentFace ? `<img src="<span class="math-inline">\{studentFace\["face\-image"\]\}" alt\="</span>{studentName}">` : '';
+                        const faceImage = studentFace ? `<img src="${studentFace["face-image"]}" alt="${studentName}">` : '';
                         studentsHtml += `
                             <div class="student-item">
-                                <span class="math-inline">\{faceImage\}
-<span\></span>{studentName}</span>
+                                ${faceImage}
+                                <span>${studentName}</span>
                             </div>
                         `;
                     });
@@ -332,19 +326,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     const memoKey = `memo_${record.id}`;
                     const savedMemo = localStorage.getItem(memoKey) || "";
 
-                    // お気に入りボタンの状態を復元
-                    const favoriteKey = `favorite_${record.id}`;
-                    const isFavorited = localStorage.getItem(favoriteKey) === 'true';
-                    const favoriteClass = isFavorited ? 'favorited' : '';
-
                     li.innerHTML = `
                         <strong>スコア：${record.score.toLocaleString()}</strong>
-                        <span class="math-inline">\{studentsHtml\}
-<textarea class\="memo\-input" data\-id\="</span>{record.id}" placeholder="自分だけの簡単なメモを残せます（自動保存）"><span class="math-inline">\{savedMemo\}</textarea\>
-<a href\="</span>{record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
-                        <button class="favorite-btn <span class="math-inline">\{favoriteClass\}" data\-id\="</span>{record.id}">
-                            <i class="fas fa-star"></i>
-                        </button>
+                        ${studentsHtml}
+                        <textarea class="memo-input" data-id="${record.id}" placeholder="自分だけの簡単なメモを残せます（自動保存）">${savedMemo}</textarea>
+                        <a href="${record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
                     `;
                     resultList.appendChild(li);
                 });
@@ -355,23 +341,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         localStorage.setItem(`memo_${id}`, event.target.value);
                     });
                 });
-
-                document.querySelectorAll('.favorite-btn').forEach(button => {
-                    button.addEventListener('click', function () {
-                        const id = this.getAttribute('data-id');
-                        const isFavorited = this.classList.contains('favorited');
-                        if (isFavorited) {
-                            this.classList.remove('favorited');
-                            localStorage.setItem(`favorite_${id}`, 'false');
-                        } else {
-                            this.classList.add('favorited');
-                            localStorage.setItem(`favorite_${id}`, 'true');
-                        }
-                    });
-                });
+                
             })
             .catch(error => console.error('顔写真データの読み込みエラー:', error));
-
+        
         window.scrollTo(0, scrollPosition); // 保存したスクロール位置に復元
     }
 
@@ -403,29 +376,5 @@ document.addEventListener('DOMContentLoaded', function () {
             fetchDataAndFilter(); // 条件が復元されたら自動的に検索を実行
         }
     }
-
-    function displayFavorites() {
-        const resultList = document.getElementById('resultList');
-        resultList.innerHTML = '';
-        const favoriteIds = [];
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
-            if (key.startsWith('favorite_') && localStorage.getItem(key) === 'true') {
-                favoriteIds.push(key.replace('favorite_', ''));
-            }
-        }
-
-        if (favoriteIds.length === 0) {
-            resultList.innerHTML = '<li class="no-data">お気に入りデータがありません。</li>';
-            return;
-        }
-
-        fetch('data.json')
-            .then(response => response.json())
-            .then(data => {
-                const favoriteRecords = data.record.filter(record => favoriteIds.includes(String(record.id)));
-                displayResults(favoriteRecords, 0); // スクロール位置は0で固定
-            })
-            .catch(error => console.error('データの読み込みエラー:', error));
-    }
+    
 });
