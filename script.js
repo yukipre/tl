@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function () {
         displayResults(filtered, scrollPosition); // スクロール位置をdisplayResultsに渡す
     }
 
-    function displayResults(results) {
+    function displayResults(results, scrollPosition) {
         const resultList = document.getElementById('resultList');
         resultList.innerHTML = '';
 
