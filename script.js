@@ -323,12 +323,26 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                     studentsHtml += '</div>';
 
+                    // 評価エリアの追加
+                    let ratingHtml = `
+                    <div class="rating" data-tl-id="${record.id}">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                `;
+
                     li.innerHTML = `
                         <strong>スコア：${record.score.toLocaleString()}</strong>
                         ${studentsHtml}
                         <a href="${record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
                     `;
                     resultList.appendChild(li);
+
+                    // 評価の初期化と表示
+                    initRating(record.id);
                 });
             })
             .catch(error => console.error('顔写真データの読み込みエラー:', error));
@@ -363,6 +377,29 @@ document.addEventListener('DOMContentLoaded', function () {
         if (battleField || bossName || armor || difficulty || includeStudents.length > 0 || excludeStudents.length > 0) {
             fetchDataAndFilter(); // 条件が復元されたら自動的に検索を実行
         }
+    }
+
+    // 評価の初期化と表示
+    function initRating(tlId) {
+        const ratingDiv = document.querySelector(`.rating[data-tl-id="${tlId}"]`);
+        const stars = ratingDiv.querySelectorAll('.star');
+        const userRatings = JSON.parse(localStorage.getItem('userRatings')) || {};
+        const userRating = userRatings[tlId] || 0;
+
+        stars.forEach((star, index) => {
+            if (index < userRating) {
+                star.classList.add('active');
+            } else {
+                star.classList.remove('active');
+            }
+
+            star.addEventListener('click', () => {
+                const rating = index + 1;
+                userRatings[tlId] = rating;
+                localStorage.setItem('userRatings', JSON.stringify(userRatings));
+                initRating(tlId);
+            });
+        });
     }
     
 });
