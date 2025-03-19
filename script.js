@@ -438,9 +438,9 @@ document.addEventListener('DOMContentLoaded', function () {
         includeStudents.forEach(student => includeStudentsTagify.addTags([student]));
         excludeStudents.forEach(student => excludeStudentsTagify.addTags([student]));
 
-        if (battleField || bossName || armor || difficulty || includeStudents.length > 0 || excludeStudents.length > 0) {
-            fetchDataAndFilter(false); // 条件が復元されたら自動的に検索を実行
-        }
+        //if (battleField || bossName || armor || difficulty || includeStudents.length > 0 || excludeStudents.length > 0) {
+        //    fetchDataAndFilter(false); // 条件が復元されたら自動的に検索を実行
+        //}
     }
 
 });
