@@ -170,9 +170,8 @@ button:hover {
     padding: 5px;
 }
 
-/* 更新日のラベル */
-.update{
-    text-align: center;
+/* 説明ラベル */
+.explanation{
     margin-top: 0px;
     color: #707070;
 }
