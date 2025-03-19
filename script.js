@@ -381,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const isFavorite = JSON.parse(localStorage.getItem(`favorite_${record.id}`)) || false;
     
                     li.innerHTML = `
-                        <strong>スコア：${record.score.toLocaleString('ja-JP')}</strong>
+                        <strong>スコア：${record.score.toLocaleString('ja-JP', { style: 'decimal' })}</strong>
                         ${additionalInfo}
                         ${studentsHtml}
                         <textarea class="memo-input" data-id="${record.id}" placeholder="自分だけの簡単なメモを残せます（自動保存）">${savedMemo}</textarea>
@@ -390,6 +390,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <i class="fas fa-star"></i>
                         </button>
                     `;
+                    console.log(record.score);
                     resultList.appendChild(li);
                 });
     
