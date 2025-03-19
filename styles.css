@@ -243,3 +243,10 @@ button:hover {
 .additional{
     font-size: 14px;
 }
+
+/* ローディングアニメーション */
+#loading {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+}

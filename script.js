@@ -233,12 +233,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 検索ボタンのイベント
     document.getElementById('searchBtn').addEventListener('click', () => {
+        showLoading(); // ローディング表示
         saveSearchConditions(); // 検索条件を保存
         fetchDataAndFilter(false); // 通常検索
     });
 
     // お気に入りボタンのイベント
     document.getElementById('favoriteBtn').addEventListener('click', () => {
+        showLoading(); // ローディング表示
         fetchDataAndFilter(true); // お気に入り検索
     });
 
@@ -251,8 +253,13 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(csv => {
                 const records = csvToJson(csv);
                 filterResults(records, scrollPosition, showFavoritesOnly);
+                hideLoading(); // ローディング非表示
             })
-            .catch(error => console.error('データの読み込みエラー:', error));
+            .catch(error => {
+                console.error('データの読み込みエラー:', error);
+                hideLoading(); // エラー時もローディング非表示
+            });
+            
     }
 
     function csvToJson(csv) {
@@ -443,4 +450,12 @@ document.addEventListener('DOMContentLoaded', function () {
         //}
     }
 
+    function showLoading() {
+        document.getElementById('loading').style.display = 'block';
+    }
+
+    function hideLoading() {
+        document.getElementById('loading').style.display = 'none';
+    }
+    
 });
