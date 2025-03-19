@@ -1,3 +1,5 @@
+import sanitizeHtml from 'sanitize-html';
+
 document.addEventListener('DOMContentLoaded', function () {
     const studentList = [
         "アイリ",
@@ -384,7 +386,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <strong>スコア：${Number(record.score).toLocaleString('ja-JP', { style: 'decimal' })}</strong>
                         ${additionalInfo}
                         ${studentsHtml}
-                        <textarea class="memo-input" data-id="${record.id}" placeholder="自分だけの簡単なメモを残せます（自動保存）">${savedMemo}</textarea>
+                        <textarea class="memo-input" data-id="${record.id}" placeholder="自分だけの簡単なメモを残せます（自動保存）">${sanitizeHtml(savedMemo)}</textarea>
                         <a href="${record.URL}" class="video-link-btn" target="_blank">動画を観る</a>
                         <button class="favorite-btn ${isFavorite ? 'favorited' : ''}" data-id="${record.id}">
                             <i class="fas fa-star"></i>
