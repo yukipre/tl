@@ -215,6 +215,9 @@ document.addEventListener('DOMContentLoaded', function () {
         "食蜂操祈",
       ];
 
+    let currentPage = 1; // 現在のページ番号
+    const itemsPerPage = 10; // 1ページあたりの表示件数
+
     // Tagify 初期化
     const includeStudentsTagify = new Tagify(document.getElementById('includeStudents'), {
         whitelist: studentList,
@@ -339,13 +342,34 @@ document.addEventListener('DOMContentLoaded', function () {
     function displayResults(results, scrollPosition, showFavoritesOnly) {
         const resultList = document.getElementById('resultList');
         resultList.innerHTML = '';
-    
+        const paginationDiv = document.getElementById('pagination'); // ページネーション用の要素を取得
+        paginationDiv.innerHTML = ''; // ページネーションをクリア
+
         if (results.length === 0) {
             resultList.innerHTML = '<li class="no-data">該当するデータがありません。</li>';
             window.scrollTo(0, scrollPosition);
             return;
         }
+
+        // ページネーションの表示
+        if (results.length > itemsPerPage) {
+            const totalPages = Math.ceil(results.length / itemsPerPage);
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.textContent = i;
+                pageButton.addEventListener('click', () => {
+                    currentPage = i;
+                    displayResults(results, scrollPosition, showFavoritesOnly);
+                });
+                paginationDiv.appendChild(pageButton);
+            }
+        }
     
+        // ページごとの表示
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const currentPageResults = results.slice(startIndex, endIndex);
+
         fetch('face.json')
             .then(response => response.json())
             .then(faceData => {
