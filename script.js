@@ -1,5 +1,3 @@
-import sanitizeHtml from 'sanitize-html';
-
 document.addEventListener('DOMContentLoaded', function () {
     const studentList = [
         "アイリ",
